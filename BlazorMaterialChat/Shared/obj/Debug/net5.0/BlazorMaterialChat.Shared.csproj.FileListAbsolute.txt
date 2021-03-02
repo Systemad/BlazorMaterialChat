@@ -1,0 +1,12 @@
+C:\Users\Dan\source\repos\BlazorMaterialChat\BlazorMaterialChat\Shared\bin\Debug\net5.0\BlazorMaterialChat.Shared.deps.json
+C:\Users\Dan\source\repos\BlazorMaterialChat\BlazorMaterialChat\Shared\bin\Debug\net5.0\BlazorMaterialChat.Shared.dll
+C:\Users\Dan\source\repos\BlazorMaterialChat\BlazorMaterialChat\Shared\bin\Debug\net5.0\ref\BlazorMaterialChat.Shared.dll
+C:\Users\Dan\source\repos\BlazorMaterialChat\BlazorMaterialChat\Shared\bin\Debug\net5.0\BlazorMaterialChat.Shared.pdb
+C:\Users\Dan\source\repos\BlazorMaterialChat\BlazorMaterialChat\Shared\obj\Debug\net5.0\BlazorMaterialChat.Shared.csprojAssemblyReference.cache
+C:\Users\Dan\source\repos\BlazorMaterialChat\BlazorMaterialChat\Shared\obj\Debug\net5.0\BlazorMaterialChat.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dan\source\repos\BlazorMaterialChat\BlazorMaterialChat\Shared\obj\Debug\net5.0\BlazorMaterialChat.Shared.AssemblyInfoInputs.cache
+C:\Users\Dan\source\repos\BlazorMaterialChat\BlazorMaterialChat\Shared\obj\Debug\net5.0\BlazorMaterialChat.Shared.AssemblyInfo.cs
+C:\Users\Dan\source\repos\BlazorMaterialChat\BlazorMaterialChat\Shared\obj\Debug\net5.0\BlazorMaterialChat.Shared.csproj.CoreCompileInputs.cache
+C:\Users\Dan\source\repos\BlazorMaterialChat\BlazorMaterialChat\Shared\obj\Debug\net5.0\BlazorMaterialChat.Shared.dll
+C:\Users\Dan\source\repos\BlazorMaterialChat\BlazorMaterialChat\Shared\obj\Debug\net5.0\ref\BlazorMaterialChat.Shared.dll
+C:\Users\Dan\source\repos\BlazorMaterialChat\BlazorMaterialChat\Shared\obj\Debug\net5.0\BlazorMaterialChat.Shared.pdb
