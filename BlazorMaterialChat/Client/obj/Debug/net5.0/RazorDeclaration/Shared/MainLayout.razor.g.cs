@@ -96,19 +96,6 @@ using MudBlazor;
         {
         }
         #pragma warning restore 1998
-#nullable restore
-#line 26 "C:\Users\Dan\source\repos\BlazorMaterialChat\BlazorMaterialChat\Client\Shared\MainLayout.razor"
-       
-    bool _drawerOpen = true;
-
-    void DrawerToggle()
-    {
-        _drawerOpen = !_drawerOpen;
-    }
-
-#line default
-#line hidden
-#nullable disable
     }
 }
 #pragma warning restore 1591

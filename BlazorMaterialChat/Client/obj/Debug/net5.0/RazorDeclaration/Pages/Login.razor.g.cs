@@ -89,95 +89,14 @@ using MudBlazor;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 2 "C:\Users\Dan\source\repos\BlazorMaterialChat\BlazorMaterialChat\Client\Pages\Index.razor"
-using System.Text.RegularExpressions;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 3 "C:\Users\Dan\source\repos\BlazorMaterialChat\BlazorMaterialChat\Client\Pages\Index.razor"
-using System.ComponentModel.DataAnnotations;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 4 "C:\Users\Dan\source\repos\BlazorMaterialChat\BlazorMaterialChat\Client\Pages\Index.razor"
-using InputType = MudBlazor.InputType;
-
-#line default
-#line hidden
-#nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/")]
-    public partial class Index : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/Login")]
+    public partial class Login : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
         }
         #pragma warning restore 1998
-#nullable restore
-#line 38 "C:\Users\Dan\source\repos\BlazorMaterialChat\BlazorMaterialChat\Client\Pages\Index.razor"
-       
-    
-    // TO NAVIGATE USE
-    // NavigationManager.NavigateTo(INSERT PAGE);
-    public string HelperText { get; set; }
-    
-    bool _success;
-    string[] errors = { };
-    
-    MudTextField<string> _pwField1;
-
-    string passy;
-    string ussy;
-    
-    string pass = "admin";
-    string uss = "admin";
-
-    MudForm _form;
-
-    bool registerclick = false;
-    
-    private IEnumerable<string> PasswordStrength(string pw)
-    {
-        if (string.IsNullOrWhiteSpace(pw))
-        {
-            yield return "Password is required!";
-            yield break;
-        }
-        if (pw.Length < 8)
-            yield return "Password must be at least of length 8";
-        if (!Regex.IsMatch(pw, @"[A-Z]"))
-            yield return "Password must contain at least one capital letter";
-        if (!Regex.IsMatch(pw, @"[a-z]"))
-            yield return "Password must contain at least one lowercase letter";
-        if (!Regex.IsMatch(pw, @"[0-9]"))
-            yield return "Password must contain at least one digit";
-    }
-
-    private string PasswordMatch(string arg)
-    {
-        if (_pwField1.Value == arg)
-            return "password does not match";
-        return null;
-    }
-
-    void LoginCheck()
-    {
-        if (passy == pass && HelperText == uss)
-        {
-            //_success = true;
-            //NavigationManager.NavigateTo("/counter");
-        }
-    }
-
-
-#line default
-#line hidden
-#nullable disable
     }
 }
 #pragma warning restore 1591

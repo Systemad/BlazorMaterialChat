@@ -197,12 +197,12 @@
       "netstandard.dll": "sha256-FbW0xcZkySFb6B8yBpUE8XmaiMacDVdXdN9GeDH6xu4=",
       "System.Private.CoreLib.dll": "sha256-AQbVm+Z+NByScjRZWDWQnNUk5PBVgwCSWPLQN4YxxZs=",
       "BlazorMaterialChat.Shared.dll": "sha256-8s4KbT+fsGRcv2kPRW5R+QKQCARtQMOLNf7wUNuFCHg=",
-      "BlazorMaterialChat.Client.dll": "sha256-WqVqsEBslRHVvK3aIqnP5F\/7CGnrWnpjZXagU665mOo="
+      "BlazorMaterialChat.Client.dll": "sha256-J\/SwCQb1MJ+3TjnmCQXFtsbicpYWGYm17VS+7cUNZiE="
     },
     "lazyAssembly": null,
     "pdb": {
       "BlazorMaterialChat.Shared.pdb": "sha256-IXzMIWDOM\/XlcrSq8TznQwkAXA3DP66viehbU+oGlqk=",
-      "BlazorMaterialChat.Client.pdb": "sha256-8BOPDsqd6fEjk4QRCgkBFC3bqHycHzR3iXS5QlxAmeM="
+      "BlazorMaterialChat.Client.pdb": "sha256-YmIlymYXWKPHKaGa6E6iht+wIewKsHvywJpfMuAhm50="
     },
     "runtime": {
       "dotnet.timezones.blat": "sha256-rFG55cwkAnfHzxmxwBL2tTwfj8X8cjcSEAlco4bc1eo=",

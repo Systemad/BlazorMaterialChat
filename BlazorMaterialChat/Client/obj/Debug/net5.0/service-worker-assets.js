@@ -9,7 +9,7 @@
       "url": "_content\/MudBlazor\/MudBlazor.min.js"
     },
     {
-      "hash": "sha256-8FtHTseptr4l\/nd+jPxEWfaLNTCPS2VJ3p+6\/g+dxo0=",
+      "hash": "sha256-VDnc\/Sgc\/70Qzk9HCIQo+X6SqrTmHOg+c5PKfnklp2A=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -805,11 +805,11 @@
       "url": "_framework\/BlazorMaterialChat.Shared.pdb"
     },
     {
-      "hash": "sha256-WqVqsEBslRHVvK3aIqnP5F\/7CGnrWnpjZXagU665mOo=",
+      "hash": "sha256-J\/SwCQb1MJ+3TjnmCQXFtsbicpYWGYm17VS+7cUNZiE=",
       "url": "_framework\/BlazorMaterialChat.Client.dll"
     },
     {
-      "hash": "sha256-8BOPDsqd6fEjk4QRCgkBFC3bqHycHzR3iXS5QlxAmeM=",
+      "hash": "sha256-YmIlymYXWKPHKaGa6E6iht+wIewKsHvywJpfMuAhm50=",
       "url": "_framework\/BlazorMaterialChat.Client.pdb"
     },
     {
@@ -1677,5 +1677,5 @@
       "url": "BlazorMaterialChat.Client.bundle.scp.css"
     }
   ],
-  "version": "HRBcDeF0"
+  "version": "W2Y2cAc+"
 };

@@ -641,3 +641,5 @@ C:\Users\Dan\source\repos\BlazorMaterialChat\BlazorMaterialChat\Client\obj\Debug
 C:\Users\Dan\source\repos\BlazorMaterialChat\BlazorMaterialChat\Client\obj\Debug\net5.0\BlazorMaterialChat.Client.pdb
 C:\Users\Dan\source\repos\BlazorMaterialChat\BlazorMaterialChat\Client\obj\Debug\net5.0\serviceworkers\wwwroot\service-worker.js
 C:\Users\Dan\source\repos\BlazorMaterialChat\BlazorMaterialChat\Client\obj\Debug\net5.0\service-worker-assets.js
+C:\Users\Dan\source\repos\BlazorMaterialChat\BlazorMaterialChat\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Login.razor.g.cs
+C:\Users\Dan\source\repos\BlazorMaterialChat\BlazorMaterialChat\Client\obj\Debug\net5.0\Razor\Pages\Login.razor.g.cs
