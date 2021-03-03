@@ -389,3 +389,11 @@ FodyWeavers.xsd
 Thumbs.db
 Desktop.ini
 .DS_Store
+/.idea/
+.idea/
+/BlazorMaterialChat/Client/bin/
+/BlazorMaterialChat/Client/obj/
+/BlazorMaterialChat/Shared/obj/
+/BlazorMaterialChat/Shared/bin/
+/BlazorMaterialChat/Server/bin/
+/BlazorMaterialChat/Server/obj/
