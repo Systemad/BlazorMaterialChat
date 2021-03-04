@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Linq;
 using BlazorMaterialChat.Server.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace BlazorMaterialChat.Server
 {
@@ -28,7 +29,11 @@ namespace BlazorMaterialChat.Server
             services.AddRazorPages();
 
             services.AddEntityFrameworkSqlite().AddDbContext<BlazorMaterialChatContext>();
-            //services.AddMudServices();
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            }).AddCookie();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +56,8 @@ namespace BlazorMaterialChat.Server
             app.UseStaticFiles();
     
             app.UseRouting();
+            
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {
