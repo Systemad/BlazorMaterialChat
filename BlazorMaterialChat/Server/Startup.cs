@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Linq;
+using BlazorMaterialChat.Server.Models;
 
 namespace BlazorMaterialChat.Server
 {
@@ -25,6 +26,8 @@ namespace BlazorMaterialChat.Server
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddEntityFrameworkSqlite().AddDbContext<BlazorMaterialChatContext>();
             //services.AddMudServices();
         }
 
