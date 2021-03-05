@@ -1,4 +1,6 @@
 ﻿using System;
+using BlazorMaterialChat.Shared.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -6,19 +8,16 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace BlazorMaterialChat.Server.Models
 {
-    public partial class BlazorMaterialChatContext : DbContext
+    public class BlazorMaterialChatContext : IdentityDbContext<ApplicationUser>
     {
-        public BlazorMaterialChatContext()
-        {
-        }
-
         public BlazorMaterialChatContext(DbContextOptions<BlazorMaterialChatContext> options)
             : base(options)
         {
         }
 
         public virtual DbSet<User> Users { get; set; }
-
+        
+        /*
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -40,5 +39,6 @@ namespace BlazorMaterialChat.Server.Models
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+        */
     }
 }

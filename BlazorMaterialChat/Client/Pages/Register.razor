@@ -1,0 +1,43 @@
+﻿@page "/register"
+@using BlazorMaterialChat.Client.Services
+@using BlazorMaterialChat.Shared.Models
+@layout AuthLayout
+@inject NavigationManager NavigationManager
+@inject CustomStateProvider AuthStateProvider
+<h1 class="h2 font-weight-normal login-title">
+    Register
+</h1>
+<EditForm class="form-signin" OnValidSubmit="OnSubmit" Model="RegisterRequest">
+    <DataAnnotationsValidator />
+    <label for="inputUsername" class="sr-only">User Name</label>
+    <InputText id="inputUsername" class="form-control" placeholder="Username" autofocus @bind-Value="@RegisterRequest.UserName" />
+    <ValidationMessage For="@(() => RegisterRequest.UserName)" />
+    <label for="inputPassword" class="sr-only">Password</label>
+    <InputText type="password" id="inputPassword" class="form-control" placeholder="Password" @bind-Value="@RegisterRequest.Password" />
+    <ValidationMessage For="@(() => RegisterRequest.Password)" />
+    <label for="inputPasswordConfirm" class="sr-only">Password Confirmation</label>
+    <InputText type="password" id="inputPasswordConfirm" class="form-control" placeholder="Password Confirmation" @bind-Value="@RegisterRequest.PasswordConfirm" />
+    <ValidationMessage For="@(() => RegisterRequest.PasswordConfirm)" />
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Create account</button>
+    <label class="text-danger">@Error</label>
+    <NavLink href="login">
+        <h6 class="font-weight-normal text-center">Already have an account? Click here to login</h6>
+    </NavLink>
+</EditForm>
+@functions{
+    RegisterRequest RegisterRequest { get; set; } = new RegisterRequest();
+    string Error { get; set; }
+    async Task OnSubmit()
+    {
+        Error = null;
+        try
+        {
+            await AuthStateProvider.Register(RegisterRequest);
+            NavigationManager.NavigateTo("/");
+        }
+        catch (Exception ex)
+        {
+            Error = ex.Message;
+        }
+    }
+}

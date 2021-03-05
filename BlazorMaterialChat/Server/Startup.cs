@@ -6,8 +6,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Linq;
+using System.Threading.Tasks;
 using BlazorMaterialChat.Server.Models;
+using BlazorMaterialChat.Shared.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using User = BlazorMaterialChat.Server.Models.User;
 
 namespace BlazorMaterialChat.Server
 {
@@ -24,16 +29,23 @@ namespace BlazorMaterialChat.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddDbContext<BlazorMaterialChatContext>(options
+                => options.UseSqlite(Configuration.GetConnectionString("BlazorMaterialChat")));
+            
+            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<BlazorMaterialChatContext>();
+            
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.HttpOnly = false;
+                options.Events.OnRedirectToLogin = context =>
+                {
+                    context.Response.StatusCode = 401;
+                    return Task.CompletedTask;
+                };
+            });
+            
             services.AddControllersWithViews();
             services.AddRazorPages();
-
-            services.AddEntityFrameworkSqlite().AddDbContext<BlazorMaterialChatContext>();
-
-            services.AddAuthentication(options =>
-            {
-                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            }).AddCookie();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +70,7 @@ namespace BlazorMaterialChat.Server
             app.UseRouting();
             
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

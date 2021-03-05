@@ -8,7 +8,7 @@ using System.Net.Http;
 using System.Text;
 using Microsoft.Extensions.Http;
 using System.Threading.Tasks;
-using BlazorMaterialChat.Client.ViewModels;
+using BlazorMaterialChat.Client.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 using MudBlazor.Services;
 
@@ -20,23 +20,21 @@ namespace BlazorMaterialChat.Client
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
-
+            
+            // Authentication
             builder.Services.AddOptions();
             builder.Services.AddAuthorizationCore();
+            builder.Services.AddScoped<CustomStateProvider>();
+            builder.Services.AddScoped<AuthenticationStateProvider>(
+                s => s.GetRequiredService<CustomStateProvider>());
+            builder.Services.AddScoped<IAuthService, AuthService>();
+            
+            // MudBlazor
             builder.Services.AddMudServices();
             
-            // AddScoped
-            builder.Services.AddScoped(sp => 
+            builder.Services.AddTransient(sp => 
                 new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-            
-            builder.Services.AddHttpClient<IProfileViewModel, ProfileViewModel>
-                ("BlazingChatClient", client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
-            
-            builder.Services.AddHttpClient<ILoginViewModel, LoginViewModel>
-                ("BlazorMaterialChat", client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
 
-            builder.Services.AddScoped<AuthenticationStateProvider,CustomAuthenticationStateProvider>();
-            
             await builder.Build().RunAsync();
         }
     }
