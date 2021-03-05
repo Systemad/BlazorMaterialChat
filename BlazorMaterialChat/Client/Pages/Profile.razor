@@ -1,27 +1,40 @@
 ﻿@page "/profile"
-@inherits LayoutComponentBase
+
+@using System.Security.Claims;
+@using BlazorMaterialChat.Client.ViewModels
+
+@inject IProfileViewModel ProfileViewModel;
 @inject NavigationManager NavigationManager
 @inject HttpClient HttpClient
 
-<div class="main">
-    <AuthorizeView>
-            <Authorized>
-                <div class="top-row px-4">
-                    <h4><b>Hello @context.User.Identity.Name</b></h4>
-                    <br/>
-                </div>
-            </Authorized>
-            <NotAuthorized>
-                <div class="top-row px-4">
-                    <p>Not authorized</p>
-                    <br/>
-                    <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="LogoutUser">Register</MudButton>
-                </div>
-            </NotAuthorized>
-    </AuthorizeView> 
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<div class="col-8">
+    <input type="text" @bind-value="ProfileViewModel.Username" class="form-control" placeholder="username">
+    <br/>
 </div>
 @code{
+
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthenticationState { get; set; }
     
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationState; //.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity.IsAuthenticated)
+        {
+            var claim = user.FindFirst(c => c.Type == ClaimTypes.NameIdentifier);
+            ProfileViewModel.UserId = Convert.ToInt64(claim?.Value);
+            await ProfileViewModel.GetProfile();
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/");
+        }
+    }
+
     private async Task LogoutUser()
     {
         await HttpClient.GetAsync("user/logoutuser");
