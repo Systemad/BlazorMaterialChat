@@ -1,4 +1,4 @@
-﻿using System.Net.Http;
+﻿    using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using BlazorMaterialChat.Shared.Models;
@@ -22,20 +22,20 @@ namespace BlazorMaterialChat.Client.ViewModels
 
         public async Task GetProfile()
         {
-            User user = await _httpClient.GetFromJsonAsync<User>("user/getprofile/" + this.UserId);
+            User user = await _httpClient.GetFromJsonAsync<User>("user/getprofile/" + UserId);
             LoadCurrentObject(user);
-            this.Message = "Profile loaded successfully";
+            Message = "Profile loaded successfully";
         }
 
         private void LoadCurrentObject(ProfileViewModel profileViewModel)
         {
-            this.Username = profileViewModel.Username;
+            Username = profileViewModel.Username;
             
         }
         
         public static implicit operator ProfileViewModel(User user)
         {
-            return new ProfileViewModel
+            return new()
             {
                 Username = user.Username,
                 UserId = user.UserId,
@@ -44,7 +44,7 @@ namespace BlazorMaterialChat.Client.ViewModels
 
         public static implicit operator User(ProfileViewModel profileViewModel)
         {
-            return new User
+            return new()
             {
                 Username = profileViewModel.Username,
                 UserId = profileViewModel.UserId

@@ -73,6 +73,7 @@ namespace BlazorMaterialChat.Server.Controllers
             return await Task.FromResult(currentUser);
         }
         
+        // DEBUG: User id = 0
         [HttpGet("getprofile/{userId}")]
         public async Task<User> GetProfile(int userId)
         {
@@ -85,8 +86,5 @@ namespace BlazorMaterialChat.Server.Controllers
             await HttpContext.SignOutAsync();
             return "Success";
         }
-        
-        
-        
     }
 }

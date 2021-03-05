@@ -27,7 +27,7 @@ namespace BlazorMaterialChat.Client.ViewModels
 
         public static implicit operator LoginViewModel(User user)
         {
-            return new LoginViewModel
+            return new()
             {
                 Username = user.Username,
                 Password = user.Password
@@ -36,7 +36,7 @@ namespace BlazorMaterialChat.Client.ViewModels
 
         public static implicit operator User(LoginViewModel loginViewModel)
         {
-            return new User
+            return new()
             {
                 Username = loginViewModel.Username,
                 Password = loginViewModel.Password
