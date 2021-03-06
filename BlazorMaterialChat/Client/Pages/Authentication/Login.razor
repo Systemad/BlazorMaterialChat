@@ -5,30 +5,45 @@
 @layout AuthLayout
 @inject NavigationManager NavigationManager
 @inject CustomStateProvider AuthStateProvider
-<h1 class="h2 font-weight-normal login-title">
-    Login
-</h1>
-<EditForm class="form-signin" OnValidSubmit="OnSubmit" Model="LoginRequest">
-    <DataAnnotationsValidator />
-    <label for="inputUsername" class="sr-only">User Name</label>
-    <InputText id="inputUsername" class="form-control" @bind-Value="LoginRequest.UserName" autofocus placeholder="Username" />
-    <ValidationMessage For="@(() => LoginRequest.UserName)" />
-    <label for="inputPassword" class="sr-only">Password</label>
-    <InputText type="password" id="inputPassword" class="form-control" placeholder="Password" @bind-Value="LoginRequest.Password" />
-    <ValidationMessage For="@(() => LoginRequest.Password)" />
-    <div class="form-check m-3">
-        <InputCheckbox id="inputRememberMe" class="form-check-input" @bind-Value="@LoginRequest.RememberMe" />
-        <label class="form-check-label" for="inputRememberMe">Remember Me</label>
-    </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    <label class="text-danger">@Error</label>
-    <NavLink href="authentication/register">
-        <h6 class="font-weight-normal text-center">Create account</h6>
-    </NavLink>
-</EditForm>
+
+<MudText Typo="Typo.h4" GutterBottom="true">Sign In</MudText>
+
+<MudText>Don't have an account? <MudLink Href="/authentication/register">Sign Up</MudLink></MudText>
+
+<MudTextField @bind-Value="LoginRequest.UserName" Label="Username" Variant="Variant.Outlined" Class="my-6"></MudTextField>
+
+<MudTextField @bind-Value="LoginRequest.Password" Label="Password" Variant="Variant.Outlined" InputType="@_passwordInput" Adornment="Adornment.End" AdornmentIcon="@_passwordInputIcon" OnAdornmentClick="TogglePasswordVisibility" />
+
+<div Class="d-flex justify-space-between align-center">
+    <MudCheckBox T="bool" Label="Remember me?" Color="Color.Primary" Class="ml-n1 my-3"></MudCheckBox>
+    <MudLink Href="/authentication/forgot-password">Forgot pwd?</MudLink>
+</div>
+
+<MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" FullWidth="true" OnClick="OnSubmit">Sign In</MudButton>
 @code{
     LoginRequest LoginRequest { get; set; } = new LoginRequest();
     string Error { get; set; }
+    
+    bool _passwordVisibility;
+    InputType _passwordInput = InputType.Password;
+    string _passwordInputIcon = Icons.Material.Filled.VisibilityOff;
+
+    void TogglePasswordVisibility()
+    {
+    @if (_passwordVisibility)
+    {
+        _passwordVisibility = false;
+        _passwordInputIcon = Icons.Material.Filled.VisibilityOff;
+        _passwordInput = InputType.Password;
+    }
+    else
+    {
+        _passwordVisibility = true;
+        _passwordInputIcon = Icons.Material.Filled.Visibility;
+        _passwordInput = InputType.Text;
+    }
+    }
+    
     async Task OnSubmit()
     {
         Error = null;

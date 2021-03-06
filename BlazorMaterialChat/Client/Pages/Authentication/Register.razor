@@ -4,29 +4,27 @@
 @layout AuthLayout
 @inject NavigationManager NavigationManager
 @inject CustomStateProvider AuthStateProvider
-<h1 class="h2 font-weight-normal login-title">
-   Register
-</h1>
-<EditForm class="form-signin" OnValidSubmit="OnSubmit" Model="RegisterRequest">
-    <DataAnnotationsValidator />
-    <label for="inputUsername" class="sr-only">User Name</label>
-    <InputText id="inputUsername" class="form-control" placeholder="Username" autofocus @bind-Value="@RegisterRequest.UserName" />
-    <ValidationMessage For="@(() => RegisterRequest.UserName)" />
-    <label for="inputPassword" class="sr-only">Password</label>
-    <InputText type="password" id="inputPassword" class="form-control" placeholder="Password" @bind-Value="@RegisterRequest.Password" />
-    <ValidationMessage For="@(() => RegisterRequest.Password)" />
-    <label for="inputPasswordConfirm" class="sr-only">Password Confirmation</label>
-    <InputText type="password" id="inputPasswordConfirm" class="form-control" placeholder="Password Confirmation" @bind-Value="@RegisterRequest.PasswordConfirm" />
-    <ValidationMessage For="@(() => RegisterRequest.PasswordConfirm)" />
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Create account</button>
-    <label class="text-danger">@Error</label>
-    <NavLink href="authentication/login">
-        <h6 class="font-weight-normal text-center">Already have an account? Click here to login</h6>
-    </NavLink>
-</EditForm>
+
+<MudText Typo="Typo.h4" GutterBottom="true">Sign Up</MudText>
+<MudText>Already have an account? <MudLink Href="/authentication/login">Sign In</MudLink></MudText>
+
+<MudTextField @bind-Value="RegisterRequest.UserName" Label="Username" Variant="Variant.Outlined" Class="my-4"></MudTextField>
+
+<MudTextField @bind-Value="RegisterRequest.Password" Label="Password" Variant="Variant.Outlined" InputType="@_passwordInput" Adornment="Adornment.End" AdornmentIcon="@_passwordInputIcon" OnAdornmentClick="TogglePasswordVisibility" Class="mt-4"/>
+
+<MudTextField @bind-Value="RegisterRequest.PasswordConfirm" Label="Password" Variant="Variant.Outlined" InputType="@_passwordInput" Adornment="Adornment.End" AdornmentIcon="@_passwordInputIcon" OnAdornmentClick="TogglePasswordVisibility" Class="mt-4"/>
+
+<MudCheckBox @bind-Checked="@AgreeToTerms" Label="I agree to the terms and privacy" Color="Color.Primary" Class="ml-n1 my-3"></MudCheckBox>
+
+<MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@(!AgreeToTerms)" OnClick="OnSubmit" Size="Size.Large" FullWidth="true">Register</MudButton>
 @functions{
     RegisterRequest RegisterRequest { get; set; } = new RegisterRequest();
+    bool _passwordVisibility;
+    InputType _passwordInput = InputType.Password;
+    string _passwordInputIcon = Icons.Material.Filled.VisibilityOff;
     string Error { get; set; }
+    public bool AgreeToTerms { get; set; }
+    
     async Task OnSubmit()
     {
         Error = null;
@@ -39,5 +37,21 @@
         {
             Error = ex.Message;
         }
+    }
+    
+    void TogglePasswordVisibility()
+    {
+    @if (_passwordVisibility)
+    {
+        _passwordVisibility = false;
+        _passwordInputIcon = Icons.Material.Filled.VisibilityOff;
+        _passwordInput = InputType.Password;
+    }
+    else
+    {
+        _passwordVisibility = true;
+        _passwordInputIcon = Icons.Material.Filled.Visibility;
+        _passwordInput = InputType.Text;
+    }
     }
 }
