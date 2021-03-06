@@ -1,11 +1,11 @@
-﻿@page "/register"
+﻿@page "/authentication/register"
 @using BlazorMaterialChat.Client.Services
 @using BlazorMaterialChat.Shared.Models
 @layout AuthLayout
 @inject NavigationManager NavigationManager
 @inject CustomStateProvider AuthStateProvider
 <h1 class="h2 font-weight-normal login-title">
-    Register
+   Register
 </h1>
 <EditForm class="form-signin" OnValidSubmit="OnSubmit" Model="RegisterRequest">
     <DataAnnotationsValidator />
@@ -20,7 +20,7 @@
     <ValidationMessage For="@(() => RegisterRequest.PasswordConfirm)" />
     <button class="btn btn-lg btn-primary btn-block" type="submit">Create account</button>
     <label class="text-danger">@Error</label>
-    <NavLink href="login">
+    <NavLink href="authentication/login">
         <h6 class="font-weight-normal text-center">Already have an account? Click here to login</h6>
     </NavLink>
 </EditForm>
@@ -33,7 +33,7 @@
         try
         {
             await AuthStateProvider.Register(RegisterRequest);
-            NavigationManager.NavigateTo("/");
+            NavigationManager.NavigateTo("");
         }
         catch (Exception ex)
         {

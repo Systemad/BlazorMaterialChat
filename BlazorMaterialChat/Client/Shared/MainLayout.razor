@@ -1,11 +1,35 @@
-﻿@inherits LayoutComponentBase
-
+﻿@using BlazorMaterialChat.Client.Services
+@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
+@inject CustomStateProvider AuthStateProvider
 
 <MudThemeProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
+
 <MudLayout>
+    <MudAppBar Elevation="0">
+        <MudAppBarSpacer />
+        <MudButton Color="Color.Inherit" OnClick="LogoutClick"> Logout </MudButton>
+    </MudAppBar>    
     <MudMainContent>
         @Body
     </MudMainContent>
 </MudLayout>
+
+@functions{
+    [CascadingParameter]
+    Task<AuthenticationState> AuthenticationState { get; set; }
+    protected override async Task OnParametersSetAsync()
+    {
+        if (!(await AuthenticationState).User.Identity.IsAuthenticated)
+        {
+            NavigationManager.NavigateTo("/authentication/login");
+        }
+    }
+    async Task LogoutClick()
+    {
+        await AuthStateProvider.Logout();
+        NavigationManager.NavigateTo("/authentication/login");
+    }
+}
