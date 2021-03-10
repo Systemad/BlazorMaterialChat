@@ -1,23 +1,68 @@
-﻿@using BlazorMaterialChat.Client.Services
+﻿@using BlazorMaterialChat.Client.Pages.Theme
+@using BlazorMaterialChat.Client.Services
 @inherits LayoutComponentBase
+
 @inject NavigationManager NavigationManager
 @inject CustomStateProvider AuthStateProvider
 
-<MudThemeProvider />
+<MudThemeProvider Theme="_currentTheme" />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
 <MudLayout>
-    <MudAppBar Elevation="0">
+    <MudAppBar Elevation="4">
+        <MudHidden Breakpoint="Breakpoint.SmAndDown">
+            <MudIcon Icon="@Icons.Custom.Brands.MudBlazor" Size="Size.Large" />
+        </MudHidden>
+        <MudHidden Breakpoint="Breakpoint.MdAndUp">
+            <MudIconButton Icon="@Icons.Material.Outlined.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        </MudHidden>
+        <MudHidden Breakpoint="Breakpoint.Xs">
+            <MudText Typo="Typo.h6" Class="ml-4">Blazor Material Chat</MudText>
+        </MudHidden>
+        <MudHidden Breakpoint="Breakpoint.Xs" Invert="true">
+            <MudText Typo="Typo.subtitle2">Blazor Material Chat</MudText>
+        </MudHidden>
         <MudAppBarSpacer />
-        <PersonCard Style="background-color: var(--mud-palette-drawer-background);color: var(--mud-palette-drawer-text);"/>
-    </MudAppBar>    
+        <MudMenu Icon="@Icons.Material.Outlined.Widgets" Color="Color.Inherit" Direction="Direction.Bottom" OffsetY="true" Dense="true">
+            <MudMenuItem Link="https://mudblazor.com/">MudBlazor</MudMenuItem>
+            <MudMenuItem Link="https://github.com/Garderoben/MudBlazor.Templates">Source Code</MudMenuItem>
+        </MudMenu>
+        <MudMenu Direction="Direction.Left" OffsetX="true" Dense="true" Class="mt-1 ml-4">
+            <ActivatorContent>
+                <MudAvatar Image="images/avatar_jonny.jpg" />
+            </ActivatorContent>
+            <ChildContent>
+                <PersonCard Class="mt-n2" />
+                <MudDivider Class="mb-2" />
+                <MudListItem Text="Account" Icon="@Icons.Material.Outlined.Person" Href="/personal/account" />
+                <MudListItem Text="Logout" Icon="@Icons.Material.Outlined.Login" OnClick="LogoutClick" />
+            </ChildContent>
+        </MudMenu>
+    </MudAppBar>
+        <MudDrawer @bind-Open="DrawerOpen" Elevation="25">
+            <NavMenu />
+        </MudDrawer>
     <MudMainContent>
-        @Body
+        <MudHidden Breakpoint="Breakpoint.SmAndDown">
+            <MudToolBar DisableGutters="true">
+                <MudIconButton Icon="@Icons.Material.Outlined.Menu" Color="Color.Inherit" OnClick="@((e) => DrawerToggle())" Class="ml-3" />
+                <MudBreadcrumbs Items="_items"></MudBreadcrumbs>
+                <MudToolBarSpacer />
+                <MudButton Variant="Variant.Text" Link="https://github.com/Systemad/BlazorMaterialChat" Style="color:#424242;" Class="mr-3">Source Code</MudButton>
+            </MudToolBar>
+        </MudHidden>
+        <MudContainer MaxWidth="MaxWidth.False" Class="mt-4">
+            @Body
+        </MudContainer>
     </MudMainContent>
 </MudLayout>
 
-@functions{
+@code {
+    private MudTheme _currentTheme = new ChatTheme();
+
+    public bool DrawerOpen = true;
+    
     [CascadingParameter]
     Task<AuthenticationState> AuthenticationState { get; set; }
     protected override async Task OnParametersSetAsync()
@@ -32,4 +77,14 @@
         await AuthStateProvider.Logout();
         NavigationManager.NavigateTo("/authentication/login");
     }
+    
+    void DrawerToggle()
+    {
+        DrawerOpen = !DrawerOpen;
+    }
+    private List<BreadcrumbItem> _items = new List<BreadcrumbItem>
+{
+        new BreadcrumbItem("Personal", href: "#"),
+        new BreadcrumbItem("Dashboard", href: "#"),
+    };
 }
