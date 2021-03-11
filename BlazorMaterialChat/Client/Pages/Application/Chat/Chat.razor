@@ -1,4 +1,4 @@
-﻿@page "/application/chater"
+﻿@page "/application/chat"
 @using BlazorMaterialChat.Shared.Testmodels
 
 <div class="d-flex flex-grow-1 flex-row">
@@ -62,7 +62,7 @@
     bool open;
     Anchor ChatDrawer { get; set; }
 
-    ChatUser[] chatUsers = new ChatUser[]
+    List<ChatUser> chatUsers = new List<ChatUser>
 {
         new ChatUser { UserName = "Garderoben", UserRoleColor = Colors.DeepPurple.Accent4, OnlineStatus = Color.Success, Spotify = true, AvatarUrl = "https://avatars2.githubusercontent.com/u/10367109?s=460&amp;u=2abf95f9e01132e8e2915def42895ffe99c5d2c6&amp;v=4"},
         new ChatUser { UserName = "Henon", UserRoleColor = Colors.DeepPurple.Accent4, OnlineStatus = Color.Success, Spotify = false, AvatarUrl = "https://avatars.githubusercontent.com/u/44090?s=460&v=4"},
@@ -78,7 +78,7 @@
         new ChatUser { UserName = "TommyG", UserRoleColor = Colors.BlueGrey.Lighten1, OnlineStatus = Color.Warning, Spotify = false, AvatarUrl = "https://avatars.githubusercontent.com/u/4773183?s=460&u=7d0ebb28e29ae5103a74070471ffd506cdbf03fd&v=4"},
 };
 
-    ChatMessage[] chatMessages = new ChatMessage[]
+    List<ChatMessage> chatMessages = new List<ChatMessage>
     {
         new ChatMessage { UserName = "Garderoben", Message = "What is CSS?"},
         new ChatMessage { UserName = "Henon", Message = "idk?"},
