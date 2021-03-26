@@ -14,6 +14,11 @@
 
 <MudTextField @bind-Value="RegisterRequest.PasswordConfirm" Label="Password" Variant="Variant.Outlined" InputType="@_passwordInput" Adornment="Adornment.End" AdornmentIcon="@_passwordInputIcon" OnAdornmentClick="TogglePasswordVisibility" Class="mt-4"/>
 
+@if (Error != null)
+{
+    <MudAlert Severity="Severity.Warning" Class="mt-8 mud-width-full" Style="max-width:500px;">@Error</MudAlert>
+}
+
 <MudCheckBox @bind-Checked="@AgreeToTerms" Label="I agree to the terms and privacy" Color="Color.Primary" Class="ml-n1 my-3"></MudCheckBox>
 
 <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@(!AgreeToTerms)" OnClick="OnSubmit" Size="Size.Large" FullWidth="true">Register</MudButton>
