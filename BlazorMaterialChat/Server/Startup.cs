@@ -33,7 +33,17 @@ namespace BlazorMaterialChat.Server
             services.AddDbContext<BlazorMaterialChatContext>(options
                 => options.UseSqlite(Configuration.GetConnectionString("BlazorMaterialChat")));
             
-            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<BlazorMaterialChatContext>();
+            //services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<BlazorMaterialChatContext>();
+            
+            services.AddIdentity<ApplicationUser, IdentityRole>(options=> {
+                    options.Password.RequireDigit = false;
+                    options.Password.RequiredLength = 4;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireLowercase = false;
+                })
+                .AddEntityFrameworkStores<BlazorMaterialChatContext>()
+                .AddDefaultTokenProviders();
             
             services.ConfigureApplicationCookie(options =>
             {
