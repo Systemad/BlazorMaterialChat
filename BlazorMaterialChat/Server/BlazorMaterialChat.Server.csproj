@@ -39,5 +39,11 @@
     <Folder Include="DB" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="DB\BlazorMaterialChat.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 
 </Project>

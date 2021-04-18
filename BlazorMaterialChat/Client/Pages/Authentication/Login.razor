@@ -33,18 +33,18 @@
 
     void TogglePasswordVisibility()
     {
-    @if (_passwordVisibility)
-    {
-        _passwordVisibility = false;
-        _passwordInputIcon = Icons.Material.Filled.VisibilityOff;
-        _passwordInput = InputType.Password;
-    }
-    else
-    {
-        _passwordVisibility = true;
-        _passwordInputIcon = Icons.Material.Filled.Visibility;
-        _passwordInput = InputType.Text;
-    }
+        @if (_passwordVisibility)
+        {
+            _passwordVisibility = false;
+            _passwordInputIcon = Icons.Material.Filled.VisibilityOff;
+            _passwordInput = InputType.Password;
+        }
+        else
+        {
+            _passwordVisibility = true;
+            _passwordInputIcon = Icons.Material.Filled.Visibility;
+            _passwordInput = InputType.Text;
+        }
     }
     
     async Task OnSubmit()
@@ -52,6 +52,10 @@
         Error = null;
         try
         {
+            if (LoginRequest.UserName == "anonymous")
+            {
+                LoginRequest.Password = "anonymous";
+            }
             await AuthStateProvider.Login(LoginRequest);
             NavigationManager.NavigateTo("/application/chat");
         }
